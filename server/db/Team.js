@@ -1,4 +1,4 @@
-const { UUID, UUIDV4, STRING, INTEGER } = require('sequelize');
+const { UUID, UUIDV4, STRING, INTEGER, FLOAT } = require('sequelize');
 const db = require('./conn');
 
 const Team = db.define('team', {
@@ -19,8 +19,32 @@ const Team = db.define('team', {
   losses: {
     type: INTEGER,
   },
+  avgYdsTotal: {
+    type: FLOAT,
+  },
+  avgYdsPass: {
+    type: FLOAT,
+  },
+  avgYdsRush: {
+    type: FLOAT,
+  },
+  seasonPoints: {
+    type: STRING(1000),
+    get() {
+      return JSON.parse(this.getDataValue('seasonPoints'));
+    },
+    set(val) {
+      return this.setDataValue('seasonPoints', JSON.stringify(val));
+    },
+  },
   divisionId: {
     type: UUID,
+  },
+  logo: {
+    type: STRING,
+  },
+  primaryColor: {
+    type: STRING,
   },
 });
 
