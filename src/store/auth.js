@@ -6,10 +6,10 @@ const initialState = {
 
 const SET_AUTH = 'SET_AUTH';
 
-export const logout = () => {
-  window.localStorage.removeItem('token');
-  return { type: SET_AUTH, auth: {} };
-};
+// export const logout = () => {
+//   window.localStorage.removeItem('token');
+//   return { type: SET_AUTH, auth: {} };
+// };
 
 export const loginWithToken = () => {
   return async dispatch => {
@@ -25,11 +25,22 @@ export const loginWithToken = () => {
   };
 };
 
+// export const attemptLogin = credentials => {
+//   return async dispatch => {
+//     console.log('this is what the THUNK got', credentials);
+//     const response = await axios.post('/api/auth', credentials);
+//     window.localStorage.setItem('token', response.data);
+//     console.log('this is the response token', response.data);
+//     dispatch(loginWithToken());
+//   };
+// };
 export const attemptLogin = credentials => {
   return async dispatch => {
+    console.log('this is what the THUNK got', credentials);
     const response = await axios.post('/api/auth', credentials);
-    window.localStorage.setItem('token', response.data);
-    dispatch(loginWithToken());
+    console.log('this is the response TOKEN...', response.data);
+    dispatch({ type: SET_AUTH, auth: response.data });
+    // dispatch(loginWithToken());
   };
 };
 

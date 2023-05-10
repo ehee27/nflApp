@@ -14,11 +14,8 @@ const User = db.define(
     },
     username: {
       type: STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
       unique: true,
+      allowNull: false,
     },
     password: {
       type: STRING,
@@ -27,53 +24,59 @@ const User = db.define(
         notEmpty: true,
       },
     },
+    firstname: {
+      type: STRING,
+    },
+    lastname: {
+      type: STRING,
+    },
   },
   {
     hooks: {
+      // before user officially created
       async beforeCreate(user) {
-        console.log(user);
-        console.log('-----------');
+        console.log('-----------NEW USER CREATED------------');
         const newUser = user.dataValues;
         console.log(newUser);
         newUser.password = await bcrypt.hash(newUser.password, 8);
-        console.log(
-          await bcrypt.compareSync(user.dataValues.password, newUser.password)
-        );
-        console.log(newUser.password);
       },
     },
   }
 );
 
-User.authenticate = async ({ username, password }) => {
-  const user = await User.findOne({
-    where: {
-      username,
-    },
-  });
-  console.log(await bcrypt.compare(password, user.password));
-  if (user && (await bcrypt.compare(password, user.password))) {
-    return jwt.sign({ id: user.id }, JWT);
-  }
-  const error = new Error('invalid credentials');
-  error.status = 401;
-  throw error;
-};
-
-User.findByToken = async token => {
-  try {
-    const { id } = jwt.verify(token, process.env.JWT);
-    const user = await User.findByPk(id);
-    if (user) {
-      return user;
-    }
-    throw 'user not found';
-  } catch (error) {
-    const err = new Error('invalid credentials');
-    error.status = 401;
-    throw err;
-  }
-};
+// User.authenticate = async ({ username, password }) => {
+//   const user = await User.findOne({
+//     where: {
+//       username,
+//     },
+//   });
+//   console.log(
+//     'this is this shit',
+//     await bcrypt.compare(password, user.password)
+//   );
+//   if (user && (await bcrypt.compare(password, user.password))) {
+//     return jwt.sign({ id: user.id }, JWT);
+//   }
+//   const error = new Error('invalid credentials');
+//   error.status = 401;
+//   throw error;
+// };
+User,
+  (authenticate = User.findByToken =
+    async token => {
+      try {
+        const { id } = jwt.verify(token, process.env.JWT);
+        const user = await User.findByPk(id);
+        if (user) {
+          return user;
+        }
+        throw 'user not found';
+      } catch (error) {
+        const err = new Error('invalid credentials');
+        error.status = 401;
+        throw err;
+      }
+    });
 User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, JWT);
 };

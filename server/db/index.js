@@ -54,6 +54,8 @@ const syncAndSeed = async () => {
   ] = await Promise.all([
     //// USER ////////
     User.create({
+      firstname: 'Scott',
+      lastname: 'Lucas',
       username: 'Scott',
       password: '123',
     }),
@@ -86,7 +88,7 @@ const syncAndSeed = async () => {
         '31',
       ],
       logo: 'chiefs.webp',
-      primaryColor: 'rgb(200, 0, 0)',
+      primaryColor: 'rgb(165, 0, 0)',
     }),
     Team.create({
       name: 'CHARGERS',
@@ -206,7 +208,7 @@ const syncAndSeed = async () => {
         '35',
       ],
       logo: 'bills.webp',
-      primaryColor: 'blue',
+      primaryColor: 'rgb(25, 43, 156)',
     }),
     Team.create({
       name: 'DOLPHINS',
@@ -266,7 +268,7 @@ const syncAndSeed = async () => {
         '23',
       ],
       logo: 'patriots.webp',
-      primaryColor: 'navy',
+      primaryColor: 'rgb(25, 37, 97)',
     }),
     Team.create({
       name: 'JETS',
@@ -356,7 +358,7 @@ const syncAndSeed = async () => {
         '14',
       ],
       logo: 'browns.webp',
-      primaryColor: 'orangered',
+      primaryColor: 'rgb(202, 58, 6)',
     }),
     Team.create({
       name: 'STEELERS',
@@ -416,7 +418,7 @@ const syncAndSeed = async () => {
         '16',
       ],
       logo: 'ravens.webp',
-      primaryColor: 'purple',
+      primaryColor: 'rgb(64, 4, 169)',
     }),
     //// AFC SOUTH ////////
     Team.create({
@@ -507,7 +509,7 @@ const syncAndSeed = async () => {
         '31',
       ],
       logo: 'colts.webp',
-      primaryColor: 'blue',
+      primaryColor: 'rgb(29, 41, 110)',
     }),
     Team.create({
       name: 'TITANS',
@@ -568,7 +570,7 @@ const syncAndSeed = async () => {
         '18',
       ],
       logo: '49ers.webp',
-      primaryColor: 'gold',
+      primaryColor: 'rgb(215, 162, 0)',
     }),
     Team.create({
       name: 'SEAHAWKS',
@@ -658,7 +660,7 @@ const syncAndSeed = async () => {
         '17',
       ],
       logo: 'cardinals.webp',
-      primaryColor: 'maroon',
+      primaryColor: 'rgb(106, 32, 36)',
     }),
     //// NFC EAST ////////
     Team.create({
@@ -719,7 +721,7 @@ const syncAndSeed = async () => {
         '6',
       ],
       logo: 'cowboys.webp',
-      primaryColor: 'navy',
+      primaryColor: 'rgb(25, 37, 97)',
     }),
     Team.create({
       name: 'GIANTS',
@@ -779,7 +781,7 @@ const syncAndSeed = async () => {
         '10',
       ],
       logo: 'commanders.webp',
-      primaryColor: 'maroon',
+      primaryColor: 'rgb(77, 14, 17)',
     }),
     //// NFC NORTH ////////
     Team.create({
@@ -840,7 +842,7 @@ const syncAndSeed = async () => {
         '20',
       ],
       logo: 'lions.webp',
-      primaryColor: 'rgb(47, 110, 219)',
+      primaryColor: 'rgb(29, 113, 216)',
     }),
     Team.create({
       name: 'PACKERS',
@@ -870,7 +872,7 @@ const syncAndSeed = async () => {
         '16',
       ],
       logo: 'packers.webp',
-      primaryColor: 'rgb(8, 87, 8)',
+      primaryColor: 'rgb(0, 55, 5)',
     }),
     Team.create({
       name: 'BEARS',
@@ -931,7 +933,7 @@ const syncAndSeed = async () => {
         '17',
       ],
       logo: 'buccaneers.webp',
-      primaryColor: 'rgb(136, 37, 37)',
+      primaryColor: 'rgb(125, 20, 34)',
     }),
     Team.create({
       name: 'PANTHERS',

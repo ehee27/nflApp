@@ -46,6 +46,9 @@ const Team = db.define('team', {
   primaryColor: {
     type: STRING,
   },
+  profilePic: {
+    type: STRING,
+  },
 });
 
 module.exports = Team;

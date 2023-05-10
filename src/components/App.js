@@ -2,16 +2,48 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTeams } from '../store';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './framework/Header';
-import Footer from './framework/Footer';
-import Nav from './framework/Nav';
-import Home from './framework/Home';
-import TeamList from './team/TeamList';
-import TeamDetails from './team/TeamDetails';
-import Login from './account/Login';
-import { loginWithToken } from '../store';
-import CreateAccount from './account/CreateAccount';
-import NotFound from './framework/NotFound';
+import Home from './Framework/Home';
+import TeamList from './Framework/TeamList';
+import TeamDetails from './Framework/TeamDetails';
+import Layout from './Framework/Layout';
+import { createTheme, ThemeProvider } from '@material-ui/core';
+import ImageUpload from './Framework/ImageUpload';
+import SignUp from './Framework/SignUp';
+import SignIn from './Framework/SignIn';
+import TestAccess from './Framework/TestAccess';
+import Account from './Framework/Account';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+    secondary: {
+      main: '#bdbdbd',
+    },
+  },
+  typography: {
+    fontFamily: 'Poppins, sans-serif;',
+    h1: {
+      fontFamily: 'Orbitron, sans-serif',
+    },
+    h2: {
+      fontFamily: 'Orbitron, sans-serif',
+    },
+    h4: {
+      fontFamily: 'Orbitron, sans-serif',
+    },
+    h5: {
+      fontFamily: 'Orbitron, sans-serif',
+    },
+    body1: {
+      color: '#424242',
+    },
+    body2: {
+      color: 'white',
+    },
+  },
+});
 
 const App = () => {
   const { auth } = useSelector(state => state);
@@ -19,44 +51,27 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loginWithToken());
-  }, []);
-
-  useEffect(() => {
     dispatch(fetchTeams());
   }, []);
 
   return (
     <>
-      <Router>
-        <Header title="NFL STATISTICS" />
-        <Nav auth={auth} />
-        {auth.id ? (
-          <div className="app">
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Layout>
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/teams" element={<TeamList />} />
+              <Route exact path="/signup" element={<SignUp />} />
+              <Route exact path="/login" element={<SignIn />} />
+              <Route exact path="/test-access" element={<TestAccess />} />
               <Route exact path="/teams/:id" element={<TeamDetails />} />
-              <Route exact path="/create-account" element={<CreateAccount />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route path="*" element={<NotFound />} />
+              <Route exact path="/users/:id" element={<Account />} />
+              <Route exact path="/image-upload" element={<ImageUpload />} />
             </Routes>
-          </div>
-        ) : (
-          <div className="app">
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/teams" element={<TeamList />} />
-              <Route exact path="/teams/:id" element={<TeamDetails />} />
-              <Route exact path="/create-account" element={<CreateAccount />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-        )}
-
-        <Footer />
-      </Router>
+          </Layout>
+        </Router>
+      </ThemeProvider>
     </>
   );
 };
