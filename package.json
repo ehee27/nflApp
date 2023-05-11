@@ -8,8 +8,8 @@
     "build:dev": "npm run build -- --watch --mode=development",
     "test:dev": "DATABASE_URL=postgres://localhost/acme_shopping_test_db npm run test -- --watch",
     "test:dev:quiet": "QUIET=true npm run test:dev",
-    "start:dev": " JWT=NFLApp nodemon server/index.js --ignore dist & npm run build:dev",
-    "start": "JWT=NFLApp node server/index.js --ignore dist/ --ignore src/"
+    "start:dev": " JWT=NFLApp nodemon server/index.js --ignore dist/ --ignore src/ & npm run build:dev",
+    "start": "node server/index.js --ignore dist/ --ignore src/"
   },
   "keywords": [],
   "author": "",
