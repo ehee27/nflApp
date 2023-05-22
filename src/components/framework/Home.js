@@ -44,9 +44,11 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
       flexDirection: 'column',
       fontSize: '30pt',
-      backgroundColor: theme.alternate,
+      // backgroundColor: theme.alternate,
+      backgroundColor: 'rgb(54, 54, 54)',
+      borderRadius: '.25rem',
     },
-    dialogContainer: {},
+
     dialogFooter: {},
     logos: {
       display: 'flex',
@@ -182,12 +184,7 @@ const Home = () => {
       <Grid className={classes.buttonRow} container spacing={1}>
         {/* ---------------------- */}
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            onClick={displayScoring}
-          >
+          <Button variant="contained" size="large" onClick={displayScoring}>
             Team Scoring
           </Button>
           <TeamScoringChart
@@ -198,12 +195,7 @@ const Home = () => {
         </Grid>
         {/* ---------------------- */}
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            onClick={displayPassing}
-          >
+          <Button variant="contained" size="large" onClick={displayPassing}>
             Passing TDs
           </Button>
           <TeamPassingChart
@@ -214,12 +206,7 @@ const Home = () => {
         </Grid>
         {/* ---------------------- */}
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button
-            variant="contained"
-            size="large"
-            color="secondary"
-            onClick={displayRushing}
-          >
+          <Button variant="contained" size="large" onClick={displayRushing}>
             Rushing TDs
           </Button>
           <TeamRushingChart

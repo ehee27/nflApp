@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    fontFamily: 'Orbitron, sans-serif',
   },
   form: {
     display: 'flex',
