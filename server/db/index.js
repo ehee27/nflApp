@@ -1,13 +1,13 @@
-const db = require('./conn.js');
-const Team = require('./Team');
-const Division = require('./Division');
-const User = require('./User');
+const db = require('./conn.js')
+const Team = require('./Team')
+const Division = require('./Division')
+const User = require('./User')
 
-Team.belongsTo(Division);
-Division.hasMany(Team);
+Team.belongsTo(Division)
+Division.hasMany(Team)
 
 const syncAndSeed = async () => {
-  await db.sync({ force: true });
+  await db.sync({ force: true })
 
   const [
     scott,
@@ -54,9 +54,11 @@ const syncAndSeed = async () => {
   ] = await Promise.all([
     //// USER ////////
     User.create({
-      firstname: 'Scott',
-      lastname: 'Lucas',
       username: 'Scott',
+      password: '123',
+    }),
+    User.create({
+      username: 'test',
       password: '123',
     }),
     //// AFC WEST ////////
@@ -1050,7 +1052,7 @@ const syncAndSeed = async () => {
     Division.create({
       name: 'NFC South',
     }),
-  ]);
+  ])
   return {
     scott,
     teams: {
@@ -1095,8 +1097,8 @@ const syncAndSeed = async () => {
       nfcNorth,
       nfcSouth,
     },
-  };
-};
+  }
+}
 
 module.exports = {
   syncAndSeed,
@@ -1104,4 +1106,4 @@ module.exports = {
   User,
   Team,
   Division,
-};
+}

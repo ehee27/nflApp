@@ -7,8 +7,8 @@
 // set active class on nav - useLocation from 'r-r-dom' - set styles - className will use ternary to check if 'location.pathname' == the item path - sets 'classes.active'
 // AppBar & ToolBar - AppBar simply acts as the container -
 
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import {
   Typography,
   makeStyles,
@@ -16,9 +16,9 @@ import {
   Toolbar,
   Container,
   Grid,
-} from '@material-ui/core';
-import Navbar from './Navbar';
-import { format } from 'date-fns';
+} from '@material-ui/core'
+import Navbar from './Navbar'
+import { format } from 'date-fns'
 
 const useStyles = makeStyles(theme => {
   return {
@@ -40,13 +40,13 @@ const useStyles = makeStyles(theme => {
     },
     title: {
       fontSize: '27pt',
-      color: 'rgb(205, 205, 205)',
+      color: 'white',
     },
-  };
-});
+  }
+})
 
 const Layout = ({ children }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     // <Container className={classes.container}>
@@ -65,7 +65,7 @@ const Layout = ({ children }) => {
         <Grid className={classes.toolbar}>{children}</Grid>
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

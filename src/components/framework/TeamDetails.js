@@ -4,14 +4,14 @@ import {
   Grid,
   makeStyles,
   TextField,
-} from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { fetchTeam } from '../../store';
-import BarChart from '../charts/BarChart';
-import LineChart from '../charts/LineChart';
+} from '@material-ui/core'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { fetchTeam } from '../../store'
+import BarChart from '../charts/BarChart'
+import LineChart from '../charts/LineChart'
 
 const useStyles = makeStyles({
   container: {
@@ -91,35 +91,35 @@ const useStyles = makeStyles({
     marginTop: 30,
     marginBottom: 30,
   },
-});
+})
 
 const TeamDetails = () => {
   //
-  const classes = useStyles();
+  const classes = useStyles()
   //
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   //
-  const { id } = useParams();
+  const { id } = useParams()
   useEffect(() => {
-    dispatch(fetchTeam(id));
-  }, []);
+    dispatch(fetchTeam(id))
+  }, [])
 
-  const team = useSelector(state => state.teams.team);
+  const team = useSelector(state => state.teams.team)
 
   // HIGH and LOW point totals
   const high = () => {
     if (team.seasonPoints) {
-      let highScore = team.seasonPoints.sort().pop();
-      console.log(typeof highScore);
-      return Number(highScore);
+      let highScore = team.seasonPoints.sort().pop()
+      console.log(typeof highScore)
+      return Number(highScore)
     }
-  };
+  }
   const low = () => {
     if (team.seasonPoints) {
-      let lowScore = team.seasonPoints.sort().shift();
-      return Number(lowScore);
+      let lowScore = team.seasonPoints.sort().shift()
+      return Number(lowScore)
     }
-  };
+  }
 
   // TOTAL YARDS
   const totalYards = {
@@ -131,7 +131,7 @@ const TeamDetails = () => {
         backgroundColor: [`${team.primaryColor}`, 'rgb(35, 35, 35)'],
       },
     ],
-  };
+  }
   // TOTAL PASS YARDS
   const passYards = {
     labels: ['Passing Yards', 'League Avg'],
@@ -142,7 +142,7 @@ const TeamDetails = () => {
         backgroundColor: [`${team.primaryColor}`, 'rgb(35, 35, 35)'],
       },
     ],
-  };
+  }
   // TOTAL RUSH YARDS
   const rushYards = {
     labels: ['Rushing Yards', 'League Avg'],
@@ -153,7 +153,7 @@ const TeamDetails = () => {
         backgroundColor: [`${team.primaryColor}`, 'rgb(35, 35, 35)'],
       },
     ],
-  };
+  }
   // WEEKLY POINTS SCORED
   const weeklyPointsScored = {
     labels: team?.seasonPoints?.map((item, i) => `Week ${i + 1}`),
@@ -165,11 +165,11 @@ const TeamDetails = () => {
         borderColor: `${team.primaryColor}`,
       },
     ],
-  };
+  }
 
   return (
     <Container className={classes.container}>
-      <div className={classes.form}>
+      {/* <div className={classes.form}>
         <form>
           <TextField
             className={classes.input}
@@ -179,7 +179,7 @@ const TeamDetails = () => {
             color="primary"
           ></TextField>
         </form>
-      </div>
+      </div> */}
       <Grid
         className={classes.topRow}
         container
@@ -242,7 +242,7 @@ const TeamDetails = () => {
         </Grid>
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default TeamDetails;
+export default TeamDetails

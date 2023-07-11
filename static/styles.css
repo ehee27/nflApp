@@ -19,7 +19,7 @@ body {
   /* safari 5.1+,chrome 10+ */
   background: -webkit-radial-gradient(
     circle at 3% 25%,
-    rgba(255, 255, 255, 1) 0%,
+    rgb(255, 255, 255) 0%,
     rgba(64, 64, 64, 1) 100%
   );
 
@@ -157,6 +157,7 @@ body {
 .nav li:focus a {
   cursor: pointer;
   color: rgb(35, 35, 35);
+  transition: 0.3s ease;
 }
 
 .homeBanner {
@@ -535,4 +536,8 @@ form button:hover {
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+button {
+  color: rgb(88, 88, 88);
 }

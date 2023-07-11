@@ -1,19 +1,19 @@
 // All we focused on here is clean layout and margins. Use of basic 'Containers', 'Grid' and 'Grid item' does the job nicely. Also placed 3 basic buttons that link to our offensive chart data. Minimal styling as possible. Grid takes care of layout. Rest comes later
 
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import TeamScoringChart from './TeamScoringChart';
-import TeamPassingChart from './TeamPassingChart';
-import TeamRushingChart from './TeamRushingChart';
-import { avgTeamScore, avgRushTD, avgPassTD } from '../../data/chartData';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import TeamScoringChart from './TeamScoringChart'
+import TeamPassingChart from './TeamPassingChart'
+import TeamRushingChart from './TeamRushingChart'
+import { avgTeamScore, avgRushTD, avgPassTD } from '../../data/chartData'
 import {
   Button,
   Container,
   Typography,
   makeStyles,
   Grid,
-} from '@material-ui/core';
-import { logout } from '../../store';
+} from '@material-ui/core'
+import { logout } from '../../store'
 
 const useStyles = makeStyles(theme => {
   return {
@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      marginTop: 20,
       marginBottom: 20,
       padding: 20,
       backgroundColor: 'rgb(249, 249, 249)',
@@ -43,13 +44,8 @@ const useStyles = makeStyles(theme => {
     button: {
       display: 'flex',
       flexDirection: 'column',
-      fontSize: '30pt',
-      // backgroundColor: theme.alternate,
-      backgroundColor: 'rgb(54, 54, 54)',
-      borderRadius: '.25rem',
+      alignItems: 'center',
     },
-
-    dialogFooter: {},
     logos: {
       display: 'flex',
       justifyContent: 'space-around',
@@ -59,7 +55,7 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '1pt solid rgb(216, 216, 216)',
+
       borderRadius: '.5rem',
     },
     teamLogos: {
@@ -74,128 +70,154 @@ const useStyles = makeStyles(theme => {
       // border: '1pt solid rgb(216, 216, 216)',
       // borderRadius: '.5rem',
     },
-  };
-});
+    chartButton: {
+      fontSize: '12pt',
+      fontFamily: 'Orbitron, sans-serif',
+      backgroundColor: 'rgb(88, 88, 88)',
+      border: '2pt solid rgb(38, 255, 38)',
+      minWidth: '100%',
+      borderRadius: '.25rem',
+      color: 'white',
+      padding: '10px',
+      '&:hover': {
+        color: 'gray',
+      },
+    },
+  }
+})
 
 const Home = () => {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const { auth } = useSelector(state => state.auth);
-  const ID = auth.id;
-  console.log('can I see your ID?...');
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const { auth } = useSelector(state => state)
 
-  // const handleLogout = () => {
-  //   dispatch(logout);
-  // };
-
-  const [hoverColor, setHoverColor] = useState(false);
-
-  // const handleMouseEnter = () => {
-  //   setHoverColor(true);
-  // };
-  // const handleMouseLeave = () => {
-  //   setHoverColor(false);
-  // };
-
-  // const hoverStyle = {
-  //   backgroundColor: hoverColor ? 'rgb(205, 205, 205)' : `white`,
-  //   // border: hoverColor ? '2pt solid red' : 'white',
-  //   borderRadius: hoverColor ? '.25rem' : '',
-  //   // padding: 1,
-  // };
-
-  const [openScoring, setOpenScoring] = useState(false);
-  const [openPassing, setOpenPassing] = useState(false);
-  const [openRushing, setOpenRushing] = useState(false);
+  const [openScoring, setOpenScoring] = useState(false)
+  const [openPassing, setOpenPassing] = useState(false)
+  const [openRushing, setOpenRushing] = useState(false)
 
   const displayScoring = () => {
-    setOpenScoring(true);
-  };
+    setOpenScoring(true)
+  }
   const closeScoring = () => {
-    setOpenScoring(false);
-  };
+    setOpenScoring(false)
+  }
   const displayPassing = () => {
-    setOpenPassing(true);
-  };
+    setOpenPassing(true)
+  }
   const closePassing = () => {
-    setOpenPassing(false);
-  };
+    setOpenPassing(false)
+  }
   const displayRushing = () => {
-    setOpenRushing(true);
-  };
+    setOpenRushing(true)
+  }
   const closeRushing = () => {
-    setOpenRushing(false);
-  };
+    setOpenRushing(false)
+  }
 
   return (
     <Container className={classes.container}>
-      {/* {auth ? (
-        <span>YOU ARE AUTHORIZED</span>
-      ) : (
-        <span>YOU ARE NOT AUTHORIZED!!!</span>
-      )} */}
-      {/* <Typography variant="h2" component="h1" align="center" gutterBottom>
-        Welcome
-      </Typography>
-      <Button onClick={handleLogout} variant="contained">
-        Log out
-      </Button>
-      <Button
-        onClick={() => console.log('here you go...', ID)}
-        variant="contained"
+      <Typography
+        // className={classes.home}
+        align="center"
+        style={{
+          fontFamily: 'Orbitron, sans-serif',
+          fontSize: '30pt',
+          textShadow: '3px 2px rgba(50, 50, 70, 0.25)',
+        }}
       >
-        Log Access
-      </Button> */}
-      <Typography className={classes.home} align="center">
-        Defense does not win championships. Over the last 20 years, the league
-        has seen a significant rise in scoring and offensive-minded team
-        construction. Organizations are now focused on building their teams
-        around dynamic players who can get the ball in the endzone quickly and
-        consistently. A stout defense is still important but if you can't score
-        at will, your chances of making a deep postseason run are lower than
-        they've ever been. This app provides offensive output over the last 20
-        years. The Charts convey that the game is shifting to higher points
-        totals and more touchdowns, both through the air and on the ground.
+        Defense does not win Championships
+      </Typography>
+      <hr></hr>
+      <Typography
+        align="center"
+        style={{
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '14pt',
+          color: 'gray',
+          marginTop: '20px',
+        }}
+      >
+        Over the last 20 years, the league has seen a significant rise in
+        scoring and offensive-minded team construction. Organizations are now
+        focused on building their teams around dynamic players who can get the
+        ball in the endzone quickly and consistently.
+      </Typography>
+      <Typography
+        align="center"
+        style={{
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '14pt',
+          marginTop: '15px',
+          color: 'gray',
+        }}
+      >
+        This app provides offensive output over the last 20 years. The Charts
+        convey that the game is shifting to higher points totals and more
+        touchdowns, both through the air and on the ground.
       </Typography>
 
-      <Grid className={classes.logos} container spacing={4}>
+      <Grid
+        className={classes.logos}
+        container
+        spacing={4}
+        style={{ marginTop: '40px' }}
+      >
         <Grid className={classes.logo} item xs={12} sm={5} md={5}>
           <img
             src={`.././static/nflLogos/afc.png`}
-            height="150"
-            width="200"
+            height="250"
+            width="300"
+            style={{
+              boxShadow: '3px 3px 6px rgba(0, 0, 0, 0.2)',
+              padding: '20px',
+              borderRadius: '.3rem',
+              outline: 'none',
+            }}
           ></img>
         </Grid>
         <Grid className={classes.logo} item xs={12} sm={5} md={5}>
           <img
             src={`.././static/nflLogos/nfc.png`}
-            height="150"
-            width="200"
+            height="250"
+            width="300"
+            style={{
+              boxShadow: '3px 3px 6px rgba(0, 0, 0, 0.2)',
+              padding: '20px',
+              borderRadius: '.3rem',
+            }}
           ></img>
         </Grid>
       </Grid>
-      <Grid>
-        <Typography paragraph align="center">
+      {/* <Grid>
+        <Typography
+          align="center"
+          style={{
+            fontFamily: 'Arial, Helvetica, sans-serif',
+            fontSize: '18pt',
+            marginTop: '15px',
+            color: 'gray',
+          }}
+        >
           Let's first take a look at league-wide team offensive stats from last
           season.
         </Typography>
-      </Grid>
+      </Grid> */}
 
-      <Grid className={classes.buttonRow} container spacing={1}>
-        {/* ---------------------- */}
+      {/* <Grid className={classes.buttonRow} container spacing={1}>
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button variant="contained" size="large" onClick={displayScoring}>
+          <Button className={classes.chartButton} onClick={displayScoring}>
             Team Scoring
           </Button>
+
           <TeamScoringChart
             open={openScoring}
             closeScoring={closeScoring}
             avgTeamScore={avgTeamScore}
           />
         </Grid>
-        {/* ---------------------- */}
+
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button variant="contained" size="large" onClick={displayPassing}>
+          <Button className={classes.chartButton} onClick={displayPassing}>
             Passing TDs
           </Button>
           <TeamPassingChart
@@ -204,9 +226,9 @@ const Home = () => {
             avgPassTD={avgPassTD}
           />
         </Grid>
-        {/* ---------------------- */}
+
         <Grid className={classes.button} item xs={12} sm={3} md={3}>
-          <Button variant="contained" size="large" onClick={displayRushing}>
+          <Button className={classes.chartButton} onClick={displayRushing}>
             Rushing TDs
           </Button>
           <TeamRushingChart
@@ -215,7 +237,7 @@ const Home = () => {
             avgRushTD={avgRushTD}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
       <Grid className={classes.teamLogos} container spacing={2}>
         <Grid className={classes.teamLogo} item xs={12} sm={4} md={2}>
           <img
@@ -261,7 +283,7 @@ const Home = () => {
         </Grid>
       </Grid>
     </Container>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

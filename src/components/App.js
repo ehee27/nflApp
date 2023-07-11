@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchTeams } from '../store';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Framework/Home';
-import TeamList from './Framework/TeamList';
-import TeamDetails from './Framework/TeamDetails';
-import Layout from './Framework/Layout';
-import { createTheme, ThemeProvider } from '@material-ui/core';
-import ImageUpload from './Framework/ImageUpload';
-import SignUp from './Framework/SignUp';
-import SignIn from './Framework/SignIn';
-import TestAccess from './Framework/TestAccess';
-import Account from './Framework/Account';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchTeams } from '../store'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './Framework/Home'
+import TeamList from './Framework/TeamList'
+import TeamDetails from './Framework/TeamDetails'
+import Layout from './Framework/Layout'
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import ImageUpload from './Framework/ImageUpload'
+import Register from './Framework/Register'
+import LogIn from './Framework/LogIn'
+import TestAccess from './Framework/TestAccess'
+import Account from './Framework/Account'
 
 const theme = createTheme({
   palette: {
@@ -43,16 +43,16 @@ const theme = createTheme({
       color: 'white',
     },
   },
-});
+})
 
 const App = () => {
-  const { auth } = useSelector(state => state);
+  const { auth } = useSelector(state => state)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchTeams());
-  }, []);
+    dispatch(fetchTeams())
+  }, [])
 
   return (
     <>
@@ -62,8 +62,8 @@ const App = () => {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/teams" element={<TeamList />} />
-              <Route exact path="/signup" element={<SignUp />} />
-              <Route exact path="/login" element={<SignIn />} />
+              {/* <Route exact path="/register" element={<Register />} /> */}
+              {/* <Route exact path="/signin" element={<LogIn />} /> */}
               <Route exact path="/test-access" element={<TestAccess />} />
               <Route exact path="/teams/:id" element={<TeamDetails />} />
               <Route exact path="/users/:id" element={<Account />} />
@@ -73,7 +73,7 @@ const App = () => {
         </Router>
       </ThemeProvider>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

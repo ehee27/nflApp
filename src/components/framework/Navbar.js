@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Typography, makeStyles, Grid } from '@material-ui/core';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Container, Typography, makeStyles, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles({
   navContainer: {
@@ -28,10 +28,10 @@ const useStyles = makeStyles({
       paddingTop: 7,
     },
   },
-});
+})
 
 const Navbar = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <>
       <Container className={classes.navContainer}>
@@ -42,29 +42,16 @@ const Navbar = () => {
           <Link className={classes.link} to="/teams">
             Teams
           </Link>
-          <Link className={classes.link} to="/signup">
-            Sign Up
+          {/* <Link className={classes.link} to="/register">
+            Register
           </Link>
-          <Link className={classes.link} to="/login">
+          <Link className={classes.link} to="/signin">
             Sign In
-          </Link>
-
-          {/* <p>
-            <a href="#/">Home</a>
-          </p>
-          <p>
-            <a href="#/teams">Teams</a>
-          </p>
-          <p>
-            <a href="#/signup">Sign Up</a>
-          </p>
-          <p>
-            <a href="#/login">Sign In</a>
-          </p> */}
+          </Link> */}
         </Grid>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
